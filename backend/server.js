@@ -4,9 +4,18 @@ import data from './data.js';
 
 const app = express();
 
+
+app.get('/api/students/:id', (req, res) => {
+    const student = data.students.find( x => x._id === req.params.id);
+    if(student){
+        res.send(student);
+    } else {
+        res.status(404).send({message: 'Student not Found'});
+    }
+}); 
 app.get('/api/students', (req, res) => {
     res.send(data.students);
-})
+});
 
 app.get('/', (req, res) => {
     res.send('Server is Ready');
