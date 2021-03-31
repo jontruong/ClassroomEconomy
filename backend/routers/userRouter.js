@@ -1,6 +1,6 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler'
-import User from '../models/useModel.js';
+import User from '../models/userModel.js';
 import data from '../data.js';
 
 
