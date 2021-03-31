@@ -1,11 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import userRouter from './routers/userRouter.js';
 import studentRouter from './routers/studentRouter.js';
 
 
+dotenv.config()
 const app = express();
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}));
 /*Mongodb*/
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/classroomeconomy', {
     useUnifiedTopology: true,
