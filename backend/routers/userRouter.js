@@ -26,6 +26,20 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
 })
 );
 
+userRouter.post('/register', expressAsyncHandler(async(req, res) => {
+    const user = new User({
+        name:req.body.name,
+        password: bcrypt.hashSync(req.body.password, 8) 
+    });
+    const createdUser = await user.save();
+    res.send({
+        _id: createdUser._id,
+        name: createdUser.name,
+        isAdmin: createdUser.isAdmin,
+        token: generateToken(createdUser)
+    })
+}))
+
 userRouter.get('/seed', expressAsyncHandler(async (req,res)=> {
     const createdUsers = await User.insertMany(data.users);
     res.send({ createdUsers })

@@ -19,7 +19,7 @@ studentRouter.get('/seed', expressAsyncHandler(async(req, res) => {
 );
 
 studentRouter.get('/:id', expressAsyncHandler(async(req, res) => {
-    const student = await Student.findById(req,params.id);
+    const student = await Student.findById(req.params.id);
     if(student){
         res.send(student)
     } else {
